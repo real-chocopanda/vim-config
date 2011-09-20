@@ -148,9 +148,6 @@ set nofoldenable
 
 " My information
 iab xdate <C-R>=strftime("%d/%m/%Y %H:%M:%S")
-iab xname <C-R> William Durand
-iab xsigp <C-R> William Durand <william.durand1@gmail.com>
-iab xsigw <C-R> William Durand <william.durand1@gmail.com>
 
 " Markdown
 au! BufRead,BufNewFile *.markdown,*.md set filetype=mkd
