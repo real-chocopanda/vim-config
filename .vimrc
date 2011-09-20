@@ -10,7 +10,7 @@ set hidden ruler wmnu               " Hide buffer instead of abandoning when unl
 
 set wildmenu                        " Enhanced command line completion.
 set wildmode=list:longest           " Complete files like a shell.
-set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,*.pyc,*.pyo,*/cache/**,*/logs/**,*/zend/**,*/bootstrap.* " Ignore certain files
+set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,*.pyc,*.pyo " Ignore certain files
 
 set showcmd                         " Display incomplete commands.
 set showmode                        " Display the mode you're in.
@@ -25,7 +25,7 @@ set hlsearch                        " Highlight matches.
 set wrap                            " Turn on line wrapping.
 set scrolloff=3                     " Show 3 lines of context around the cursor.
 
-set visualbell                      " No beeping.
+" set visualbell                      " No beeping.
 set shortmess+=filmnrxoOtT          " abbrev. of messages (avoids 'hit enter')
 
 set nobackup                        " Don't make a backup before overwriting a file.
@@ -43,6 +43,10 @@ set showmatch                       " set show matching parenthesis
 set autoindent
 
 set undolevels=1000                 " use many levels of undo
+
+set ignorecase                      " Search in insensitive case
+set smartcase                       " Search like ack with maj on ly if a maj
+
 
 if version >= 730
     set noundofile                  " Don't keep a persistent undofile
@@ -65,6 +69,9 @@ nnoremap <C-w>> 5<C-w>>
 " Remap the marker char
 nnoremap ' `
 nnoremap ` '
+
+" Line number toggle with F12
+noremap <silent> <F12> :set number!<CR>
 
 " Command and search pattern history
 set history=1000
@@ -116,21 +123,21 @@ set background=light
 colorscheme mustang
 
 " Ctags
-set nocp
-set tags=tags
-map <silent><leader><Left> <C-T>
-map <silent><leader><Right> <C-]>
-map <silent><leader><Up> <C-W>]
+" set nocp
+" set tags=tags
+" map <silent><leader><Left> <C-T>
+" map <silent><leader><Right> <C-]>
+" map <silent><leader><Up> <C-W>]
 
 "OmniCppComplete
-let OmniCpp_NamespaceSearch     = 1
-let OmniCpp_GlobalScopeSearch   = 1
-let OmniCpp_ShowAccess          = 1
-let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
-let OmniCpp_MayCompleteDot      = 1 " autocomplete after .
-let OmniCpp_MayCompleteArrow    = 1 " autocomplete after ->
-let OmniCpp_MayCompleteScope    = 1 " autocomplete after ::
-let OmniCpp_DefaultNamespaces   = ["std", "_GLIBCXX_STD"]
+" let OmniCpp_NamespaceSearch     = 1
+" let OmniCpp_GlobalScopeSearch   = 1
+" let OmniCpp_ShowAccess          = 1
+" let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
+" let OmniCpp_MayCompleteDot      = 1 " autocomplete after .
+" let OmniCpp_MayCompleteArrow    = 1 " autocomplete after ->
+" let OmniCpp_MayCompleteScope    = 1 " autocomplete after ::
+" let OmniCpp_DefaultNamespaces   = ["std", _GLIBCXX_STD"]
 
 " Completion
 set complete=.,w,b,u,t,i,k~/.vim/syntax/php.api
