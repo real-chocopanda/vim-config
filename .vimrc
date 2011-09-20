@@ -78,11 +78,6 @@ set lazyredraw
 " Always replace all occurences of a line
 set gdefault
 
-" Useful status information at bottom of screen
-" set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\(%{getcwd()})%{fugitive#statusline()}%=%-16(\ %l,%c-%v\ %)%P
-set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\%{fugitive#statusline()}
-set statusline+=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%=%-16(\ %l,%c-%v\ %)%P
-
 " Tabs and indentation. Yes, I like 4-space tabs (Symfony2 here we go !)
 set tabstop=4
 set shiftwidth=4
@@ -157,9 +152,6 @@ iab xname <C-R> William Durand
 iab xsigp <C-R> William Durand <william.durand1@gmail.com>
 iab xsigw <C-R> William Durand <william.durand1@gmail.com>
 
-" snipMate
-let g:snips_author = 'William Durand <william.durand1@gmail.com>'
-
 " Markdown
 au! BufRead,BufNewFile *.markdown,*.md set filetype=mkd
 au! BufRead,BufNewFile *.md set filetype=mkd
@@ -175,26 +167,6 @@ let g:surround_{char2nr('-')} = "{% \r %}"
 " PHP/HTML
 let php_htmlInStrings = 1
 let php_sql_query = 1
-
-" Symfony plugin
-let g:symfony_fuf = 1
-map <C-F3> :SfSwitchView<cr>
-au BufRead,BufNewFile *.class.php set ft=php.symfony
-
-" Symfony2 (default)
-au BufRead,BufNewFile *.php.* set ft=php.symfony2
-au BufRead,BufNewFile */config/*.xml set ft=xml.sf2xml
-au BufRead,BufNewFile *Bundle/*.php set ft=php.sf2class
-
-" Propel
-au BufRead,BufNewFile */runtime/*.php set noexpandtab
-au BufRead,BufNewFile */generator/*.php set noexpandtab
-
-" Behat
-au BufRead,BufNewFile *.feature set ft=yaml.behat
-
-"jquery color
-au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
 
 "Invisible character
 nmap <leader>l :set list!<CR>
