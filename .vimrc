@@ -194,12 +194,12 @@ endfunction
 autocmd BufWritePre *.php,*.yml,*.xml,*.js,*.html,*.css,*.java,*.c,*.cpp,*.vim :call StripTrailingWhitespace()
 
 " Syntastic
-"let g:syntastic_enable_signs = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_quiet_warnings=0
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
+let g:syntastic_enable_signs = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_quiet_warnings=0
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
 " Tab mappings.
 map <leader>te :tabedit
