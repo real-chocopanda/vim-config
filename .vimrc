@@ -2,6 +2,13 @@
 " Original comes from Vincent Jousse
 " Modified by William Durand <william.durand1@gmail.com>
 
+filetype off
+" Use pathogen so that we choose to load one of two versions of the same command-t plugin depending of the host arch (i386, x86_64)
+let host_arch=substitute(system('uname -i'), "\n", "", "")
+call pathogen#infect('bundle-'.host_arch)
+call pathogen#helptags()
+filetype on
+
 " Set title on X window
 set title
 

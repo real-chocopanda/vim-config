@@ -1,3 +1,9 @@
 [submodule "syntastic"]
 	path = syntastic
 	url = git://github.com/scrooloose/syntastic.git
+[submodule "bundle-i386/command-t"]
+	path = bundle-i386/command-t
+	url = git://github.com/wincent/Command-T.git
+[submodule "bundle-x86_64/command-t"]
+	path = bundle-x86_64/command-t
+	url = git://github.com/wincent/Command-T.git
