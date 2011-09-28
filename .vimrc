@@ -225,6 +225,8 @@ map <leader>tl :tablast<cr>
 map <leader>tm :tabmove<cr>
 map <leader>tr :tabrewind<cr>
 
+let g:CommandTMaxHeight=15
+
 fun SetupVAM()
           " YES, you can customize this vam_install_path path and everything still works!
           let vam_install_path = expand('$HOME') . '/.vim/vim-addons'
