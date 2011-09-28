@@ -5,3 +5,4 @@
 .vim/syntax_checkers/
 .vim/doc/syntastic.txt
 .vim/ruby/command-t/ext.so
+vim-addons
