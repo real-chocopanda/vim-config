@@ -20,9 +20,9 @@ ln -s $CURRENT/.vim ~/.vim
 ln -s $CURRENT/.vimrc ~/.vimrc
 
 # Syntastic
-cp -R $CURRENT/syntastic/doc/* ~/.vim/doc
-cp -R $CURRENT/syntastic/plugin/* ~/.vim/plugin
-cp -R $CURRENT/syntastic/syntax_checkers ~/.vim/syntax_checkers
+#cp -R $CURRENT/syntastic/doc/* ~/.vim/doc
+#cp -R $CURRENT/syntastic/plugin/* ~/.vim/plugin
+#cp -R $CURRENT/syntastic/syntax_checkers ~/.vim/syntax_checkers
 
 # Command-T
 cd ~/.vim/ruby/command-t
