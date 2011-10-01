@@ -71,6 +71,13 @@ nnoremap <F2> :set invpaste paste?<Enter>
 imap <F2> <C-O><F2>
 set pastetoggle=<F2>
 
+inoremap <F3> *
+vnoremap <F3> y/<C-R>"<CR>
+nmap <silent> <F3> n
+nmap <silent> <S-F3> N
+imap <silent> <F3> <C-O>n
+imap <silent> <S-F3> <C-O>N
+
 " Make the view port scroll faster
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
@@ -179,6 +186,10 @@ let g:surround_{char2nr('-')} = "{% \r %}"
 " PHP/HTML
 let php_htmlInStrings = 1
 let php_sql_query = 1
+" run file with PHP CLI (CTRL-M)
+autocmd FileType php noremap <C-M> :w!<CR>:!/usr/bin/php %<CR>
+" PHP parser check (CTRL-L)
+autocmd FileType php noremap <C-L> :!/usr/bin/php -l %<CR>
 
 "Invisible character
 nmap <leader>l :set list!<CR>
@@ -258,3 +269,17 @@ call SetupVAM()
 " option2: au GUIEnter * call SetupVAM()
 " See BUGS sections below [*]
 
+
+function! OpenPhpFunction (keyword)
+  let proc_keyword = substitute(a:keyword , '_', '-', 'g')
+  exe 'split'
+  exe 'enew'
+  exe "set buftype=nofile"
+  exe 'silent r!lynx -dump -nolist http://www.php.net/manual/en/print/function.'.proc_keyword.'.php'
+  exe 'norm gg'
+  exe 'call search ("' . a:keyword .'")'
+  exe 'norm dgg'
+"  exe 'call search("User Contributed Notes")'
+"  exe 'norm dGgg'
+endfunction
+au FileType php map K :call OpenPhpFunction('<C-r><C-w>')<CR>
