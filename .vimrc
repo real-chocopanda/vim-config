@@ -23,7 +23,7 @@ set showcmd                         " Display incomplete commands.
 set showmode                        " Display the mode you're in.
 
 set number                          " Show line numbers.
-set ruler                           " Show cursor position.
+"set ruler                           " Show cursor position. Works without.
 set cursorline                      " Highlight current line.
 
 set incsearch                       " Highlight matches as you type.
