@@ -28,6 +28,8 @@ set cursorline                      " Highlight current line.
 
 set incsearch                       " Highlight matches as you type.
 set hlsearch                        " Highlight matches.
+set ignorecase                      " Search in insensitive case
+set smartcase                       " Search like ack with maj on ly if a maj
 
 set wrap                            " Turn on line wrapping.
 set scrolloff=3                     " Show 3 lines of context around the cursor.
@@ -51,8 +53,6 @@ set autoindent
 
 set undolevels=1000                 " use many levels of undo
 
-set ignorecase                      " Search in insensitive case
-set smartcase                       " Search like ack with maj on ly if a maj
 
 
 if version >= 730
@@ -126,7 +126,7 @@ filetype indent on
 
 " Color scheme
 let &t_Co=256         " force the 256-color mode
-set background=light
+"set background=light    " no effect since the colorscheme is after
 colorscheme mustang
 
 " Ctags
