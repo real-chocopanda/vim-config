@@ -22,9 +22,15 @@ set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jp
 set showcmd                         " Display incomplete commands.
 set showmode                        " Display the mode you're in.
 
+syntax on
+
+" Color scheme
+let &t_Co=256         " force the 256-color mode
+colorscheme mustang
+
 set number                          " Show line numbers.
-"set ruler                           " Show cursor position. Works without.
-set cursorline                      " Highlight current line.
+set cursorline
+hi cursorline cterm=none term=none  " Highlight current line, disable underlining
 
 set incsearch                       " Highlight matches as you type.
 set hlsearch                        " Highlight matches.
@@ -118,16 +124,11 @@ nmap <leader>a :Ack<space>
 " Clear search highlight
 map <silent> <leader>/ :let @/=""<CR>:echo "Cleared search register."<cr>
 
-syntax on
 
 filetype on
 filetype plugin on
 filetype indent on
 
-" Color scheme
-let &t_Co=256         " force the 256-color mode
-"set background=light    " no effect since the colorscheme is after
-colorscheme mustang
 
 " Ctags
 " set nocp
@@ -256,3 +257,4 @@ call SetupVAM()
 " option1: au VimEnter * call SetupVAM()
 " option2: au GUIEnter * call SetupVAM()
 " See BUGS sections below [*]
+
