@@ -179,6 +179,10 @@ let g:surround_{char2nr('-')} = "{% \r %}"
 " PHP/HTML
 let php_htmlInStrings = 1
 let php_sql_query = 1
+" run file with PHP CLI (CTRL-M)
+autocmd FileType php noremap <C-M> :w!<CR>:!/usr/bin/php %<CR>
+" PHP parser check (CTRL-L)
+autocmd FileType php noremap <C-L> :!/usr/bin/php -l %<CR>
 
 "Invisible character
 nmap <leader>l :set list!<CR>
