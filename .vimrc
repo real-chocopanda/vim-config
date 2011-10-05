@@ -28,7 +28,6 @@ syntax on
 let &t_Co=256         " force the 256-color mode
 colorscheme mustang
 
-set number                          " Show line numbers.
 set cursorline
 hi cursorline cterm=none term=none  " Highlight current line, disable underlining
 
