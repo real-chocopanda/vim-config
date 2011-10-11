@@ -256,7 +256,7 @@ fun SetupVAM()
     exec '!p='.shellescape(vam_install_path).'; mkdir -p "$p" && cd "$p" && git clone --depth 1 git://github.com/MarcWeber/vim-addon-manager.git'
   endif
 
-  call vam#ActivateAddons(['ack', 'snipmate-snippets', 'Syntastic', 'The_NERD_tree'], {'auto_install' : 0})
+  call vam#ActivateAddons(['ack', 'snipmate-snippets', 'Syntastic', 'The_NERD_tree'], {'auto_install' : 1})
   " sample: call vam#ActivateAddons(['pluginA','pluginB', ...], {'auto_install' : 0})
   " where pluginA could be github:YourName or snipmate-snippets see vam#install#RewriteName()
   " also see section "5. Installing plugins" in VAM's documentation
