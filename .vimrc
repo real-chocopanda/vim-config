@@ -254,13 +254,15 @@ fun SetupVAM()
     " I'm sorry having to add this reminder. Eventually it'll pay off.
     call confirm("Remind yourself that most plugins ship with documentation (README*, doc/*.txt). Its your first source of knowledge. If you can't find the info you're looking for in reasonable time ask maintainers to improve documentation")
     exec '!p='.shellescape(vam_install_path).'; mkdir -p "$p" && cd "$p" && git clone --depth 1 git://github.com/MarcWeber/vim-addon-manager.git'
+
+    call vam#ActivateAddons(['ack', 'snipmate-snippets', 'Syntastic', 'The_NERD_tree'], {'auto_install' : 1})
+    " sample: call vam#ActivateAddons(['pluginA','pluginB', ...], {'auto_install' : 0})
+    " where pluginA could be github:YourName or snipmate-snippets see vam#install#RewriteName()
+    " also see section "5. Installing plugins" in VAM's documentation
+    " which will tell you how to find the plugin names of a plugin
+
   endif
 
-  call vam#ActivateAddons(['ack', 'snipmate-snippets', 'Syntastic', 'The_NERD_tree'], {'auto_install' : 1})
-  " sample: call vam#ActivateAddons(['pluginA','pluginB', ...], {'auto_install' : 0})
-  " where pluginA could be github:YourName or snipmate-snippets see vam#install#RewriteName()
-  " also see section "5. Installing plugins" in VAM's documentation
-  " which will tell you how to find the plugin names of a plugin
 endf
 call SetupVAM()
 " experimental: run after gui has been started (gvim) [3]
