@@ -2,6 +2,7 @@
 
 cd ~/.vim
 # Git
+export GIT_PROXY_COMMAND=/usr/local/bin/proxy-wrapper %h %p
 git submodule update --init
 git submodule foreach git pull origin master
 
