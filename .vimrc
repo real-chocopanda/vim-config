@@ -109,6 +109,9 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 
+" Remove any trailing dos line break ^M
+set ff=unix
+
 nmap <leader>2 :set tabstop=2<cr>:set shiftwidth=2<cr>:set softtabstop=2<cr>
 nmap <leader>4 :set tabstop=4<cr>:set shiftwidth=4<cr>:set softtabstop=4<cr>
 
@@ -221,12 +224,12 @@ autocmd BufWritePre *.php,*.yml,*.xml,*.js,*.html,*.css,*.java,*.c,*.cpp,*.vim :
 set statusline+=%<%f\ %h%m%r%=%{\"[\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"]\ \"}%k\ %-14.(%l,%c%V%)\ %P
 
 " Syntastic
-let g:syntastic_enable_signs = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_quiet_warnings=0
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"let g:syntastic_enable_signs = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_quiet_warnings=0
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
 
 " Tab mappings.
@@ -257,7 +260,7 @@ fun SetupVAM()
 
   endif
 
-  call vam#ActivateAddons(['ack', 'snipmate-snippets', 'Syntastic', 'The_NERD_tree'], {'auto_install' : 1})
+  call vam#ActivateAddons(['ack', 'snipmate-snippets', 'syntastic2', 'The_NERD_tree'], {'auto_install' : 1})
   " sample: call vam#ActivateAddons(['pluginA','pluginB', ...], {'auto_install' : 0})
   " where pluginA could be github:YourName or snipmate-snippets see vam#install#RewriteName()
   " also see section "5. Installing plugins" in VAM's documentation
@@ -284,3 +287,15 @@ function! OpenPhpFunction (keyword)
 "  exe 'norm dGgg'
 endfunction
 au FileType php map K :call OpenPhpFunction('<C-r><C-w>')<CR>
+
+
+let g:ackprg="ack -H --nocolor --nogroup --column --smart-case"
+
+" Go to last file(s) if invoked without arguments.
+autocmd VimLeave * nested if (!isdirectory($HOME . "/.vim")) |
+    \ call mkdir($HOME . "/.vim") |
+    \ endif |
+    \ execute "mksession! " . $HOME . "/.vim/Session.vim"
+
+autocmd VimEnter * nested if argc() == 0 && filereadable($HOME . "/.vim/Session.vim") |
+    \ execute "source " . $HOME . "/.vim/Session.vim"
