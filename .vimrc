@@ -1,13 +1,24 @@
 " VIM Configuration
 " Original comes from Vincent Jousse
-" Modified by William Durand <william.durand1@gmail.com>
 
-filetype off
-" Use pathogen so that we choose to load one of two versions of the same command-t plugin depending of the host arch (i386, x86_64)
-let host_arch=substitute(system('uname -i'), "\n", "", "")
-call pathogen#infect('bundle-'.host_arch)
-call pathogen#helptags()
-filetype on
+
+fun SetupVAM()
+    let c = get(g:, 'vim_addon_manager', {})
+    let g:vim_addon_manager = c
+    let c.plugin_root_dir = expand('$HOME', 1) . '/.vim/vim-addons'
+    let &rtp.=(empty(&rtp)?'':',').c.plugin_root_dir.'/vim-addon-manager'
+    " let g:vim_addon_manager = { your config here see "commented version" example and help
+    if !isdirectory(c.plugin_root_dir.'/vim-addon-manager/autoload')
+        execute '!git clone --depth=1 git://github.com/MarcWeber/vim-addon-manager '
+            \       shellescape(c.plugin_root_dir.'/vim-addon-manager', 1)
+    endif
+    call vam#ActivateAddons(['ack', 'ctrlp', 'EasyMotion', 'vim-snippets', 'Syntastic', 'The_NERD_tree'], {'auto_install' : 0})
+    " Also See "plugins-per-line" below
+endfun
+call SetupVAM()
+
+" put this line first in ~/.vimrc
+set nocompatible | filetype indent plugin on | syn on
 
 " Set title on X window
 set title
@@ -244,34 +255,39 @@ map <leader>tr :tabrewind<cr>
 
 let g:CommandTMaxHeight=15
 
-fun SetupVAM()
-  " YES, you can customize this vam_install_path path and everything still works!
-  let vam_install_path = expand('$HOME') . '/.vim/vim-addons'
-  exec 'set runtimepath+='.vam_install_path.'/vim-addon-manager'
+"fun SetupVAM()
+"  " YES, you can customize this vam_install_path path and everything still works!
+"  let vam_install_path = expand('$HOME') . '/.vim/vim-addons'
+"  exec 'set runtimepath+='.vam_install_path.'/vim-addon-manager'
 
-  " * unix based os users may want to use this code checking out VAM
-  " * windows users want to use http://mawercer.de/~marc/vam/index.php
-  " to fetch VAM, VAM-known-repositories and the listed plugins
-  " without having to install curl, unzip, git tool chain first
-  if !isdirectory(vam_install_path.'/vim-addon-manager') && 1 == confirm("git clone VAM into ".vam_install_path."?","&Y\n&N")
+"  " * unix based os users may want to use this code checking out VAM
+"  " * windows users want to use http://mawercer.de/~marc/vam/index.php
+"  " to fetch VAM, VAM-known-repositories and the listed plugins
+"  " without having to install curl, unzip, git tool chain first
+"  if !isdirectory(vam_install_path.'/vim-addon-manager') && 1 == confirm("git clone VAM into ".vam_install_path."?","&Y\n&N")
     " I'm sorry having to add this reminder. Eventually it'll pay off.
     " call confirm("Remind yourself that most plugins ship with documentation (README*, doc/*.txt). Its your first source of knowledge. If you can't find the info you're looking for in reasonable time ask maintainers to improve documentation")
-    exec '!p='.shellescape(vam_install_path).'; mkdir -p "$p" && cd "$p" && git clone --depth 1 git://github.com/MarcWeber/vim-addon-manager.git'
+"    exec '!p='.shellescape(vam_install_path).'; mkdir -p "$p" && cd "$p" && git clone --depth 1 git://github.com/MarcWeber/vim-addon-manager.git'
 
-  endif
+"  endif
 
-  call vam#ActivateAddons(['ack', 'snipmate-snippets', 'syntastic2', 'The_NERD_tree'], {'auto_install' : 1})
+"  call vam#ActivateAddons(['ack', 'ctrlp', 'EasyMotion', 'vim-snippets', 'Syntastic', 'The_NERD_tree'], {'auto_install' : 1})
   " sample: call vam#ActivateAddons(['pluginA','pluginB', ...], {'auto_install' : 0})
   " where pluginA could be github:YourName or snipmate-snippets see vam#install#RewriteName()
   " also see section "5. Installing plugins" in VAM's documentation
   " which will tell you how to find the plugin names of a plugin
 
-endf
-call SetupVAM()
+"endf
+"call SetupVAM()
 " experimental: run after gui has been started (gvim) [3]
 " option1: au VimEnter * call SetupVAM()
 " option2: au GUIEnter * call SetupVAM()
 " See BUGS sections below [*]
+
+"let vam_install_path = expand('$HOME') . '/.vim/vim-addons'
+"exec 'set runtimepath+='.vam_install_path.'/vim-addon-manager'
+"call vam#ActivateAddons(['ack', 'ctrlp', 'EasyMotion', 'vim-snippets', 'Syntastic', 'The_NERD_tree'], {'auto_install' : 0})
+
 
 
 function! OpenPhpFunction (keyword)
@@ -299,3 +315,6 @@ autocmd VimLeave * nested if (!isdirectory($HOME . "/.vim")) |
 
 autocmd VimEnter * nested if argc() == 0 && filereadable($HOME . "/.vim/Session.vim") |
     \ execute "source " . $HOME . "/.vim/Session.vim"
+
+" ctrlp shortcut
+let g:ctrlp_map = '<c-p>'
